@@ -88,8 +88,7 @@ get_biomart_gene_lookup <- function(genome_build = 'hg38') {
   if (genome_build == 'hg38') {
     
     # Get hg38 gene lookup table
-    mart_hg38 <- useMart('ENSEMBL_MART_ENSEMBL')
-    mart_hg38 <- useDataset('hsapiens_gene_ensembl', mart_hg38)
+    mart_hg38 <- useMart(biomart="ensembl", dataset="hsapiens_gene_ensembl")
     
     attribs <- as_tibble(listAttributes(mart_hg38))
     
@@ -113,7 +112,7 @@ get_biomart_gene_lookup <- function(genome_build = 'hg38') {
   
   if (genome_build == 'hg19') {
     
-    mart_hg19 <- useMart('ENSEMBL_MART_ENSEMBL', host = 'https://grch37.ensembl.org')
+    mart_hg19 <- useMart(biomart="ensembl", host = 'https://grch37.ensembl.org')
     mart_hg19 <- useDataset('hsapiens_gene_ensembl', mart_hg19)
     
     annot_lookup <- as_tibble(
